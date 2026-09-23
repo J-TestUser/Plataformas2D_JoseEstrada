@@ -5,6 +5,7 @@ public class PlayerController : MonoBehaviour
 {
 
     [SerializeField] private int _maxHealth = 100;
+    [SerializeField] private int _actualHealth;
     [SerializeField] private float movementSpeed = 4.5f;    
     [SerializeField] private float _jumpHeight = 10;  
     [SerializeField] private int _attackDamage = 10;
@@ -12,7 +13,7 @@ public class PlayerController : MonoBehaviour
 //Components
     private Rigidbody2D _rigidBody2D;
     private Animator _animator;
-
+    private AudioSource _playerAudioSource;
 
 //Inputs
     private InputAction _moveAction;
@@ -27,6 +28,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _hitBoxRadius = 1f;
     [SerializeField] private float _sensorSize = 1;
     [SerializeField] private LayerMask _groundLayer;
+    [SerializeField] private AudioClip _jumpSound;
+    [SerializeField] private AudioClip _attackSound; 
     
   
 
@@ -34,10 +37,18 @@ public class PlayerController : MonoBehaviour
     {
         _rigidBody2D = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
+        _playerAudioSource = GetComponent<AudioSource>();
+
+
         _moveAction = InputSystem.actions["Move"];
         _jumpAction = InputSystem.actions["Jump"];
         _attackAction = InputSystem.actions["Attack"];
         _pauseAction = InputSystem.actions["Pause"];
+    }
+
+    void Start()
+    {
+        //_actualHealth = _maxHealth;
     }
     // Update is called once per frame
     void Update()
@@ -87,17 +98,21 @@ public class PlayerController : MonoBehaviour
     }
     void FixedUpdate()
     {
-        _rigidBody2D.linearVelocity = new Vector2(_moveInput.x * movementSpeed, _rigidBody2D.linearVelocity.y);    
+        _rigidBody2D.linearVelocity = new Vector2(_moveInput.x * movementSpeed, _rigidBody2D.linearVelocity.y);
+ 
     } 
 
     void Jump()
     {
-        _rigidBody2D.AddForce(Vector2.up * Mathf.Sqrt(_jumpHeight * -2 * Physics2D.gravity.y),ForceMode2D.Impulse); 
+        _rigidBody2D.AddForce(Vector2.up * Mathf.Sqrt(_jumpHeight * -2 * Physics2D.gravity.y),ForceMode2D.Impulse);         
+        PlaySFX(_jumpSound, 0.7f);   
     }
 
     void Attack()
     {
         _animator.SetTrigger("IsAttacking");
+
+        PlaySFX(_attackSound, 0.7f);
 
         Collider2D[] colliders2D = Physics2D.OverlapCircleAll(_attackHitBox.position, _hitBoxRadius);
 
@@ -125,6 +140,22 @@ public class PlayerController : MonoBehaviour
         return false; 
     }
 
+    void PlaySFX(AudioClip clip, float volume = 1)
+    {
+        _playerAudioSource.PlayOneShot(clip, volume);
+    }
+
+    public void GainHealth(int heal)
+    {
+        _actualHealth += heal;
+
+        if(_actualHealth >= _maxHealth)
+        {
+            _actualHealth = _maxHealth ;  
+        }
+        
+    }
+
     void OnDrawGizmos()
     {
         //GroundSensor Gizmo
@@ -135,8 +166,5 @@ public class PlayerController : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(_attackHitBox.position, _hitBoxRadius);
     }
-
-
-
 }
 
