@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     private InputAction _jumpAction;
     private InputAction _attackAction;
     private Vector2 _moveInput;
+    private InputAction _pauseAction;
 
 //Ground Sensor
     [SerializeField] private Transform _groundSensor;
@@ -36,10 +37,22 @@ public class PlayerController : MonoBehaviour
         _moveAction = InputSystem.actions["Move"];
         _jumpAction = InputSystem.actions["Jump"];
         _attackAction = InputSystem.actions["Attack"];
+        _pauseAction = InputSystem.actions["Pause"];
     }
     // Update is called once per frame
     void Update()
-    {
+    {        
+        if (_pauseAction.WasPressedThisFrame())
+        {
+            GameManager.Instance.Pause();
+        }
+
+        //Si se cumple la condición, return corta la función (dentro de update) anulando todos los inputs, a excepción del de pausa
+        if(GameManager.Instance.IsPaused())
+        {
+            return; 
+        }
+
         _moveInput = _moveAction.ReadValue<Vector2>();
         if(_moveInput.x < 0)
         {
@@ -66,6 +79,7 @@ public class PlayerController : MonoBehaviour
         {
             Attack();
         }
+
 
         _animator.SetBool("IsJumping", !IsGrounded());
 
@@ -95,8 +109,6 @@ public class PlayerController : MonoBehaviour
                 enemyScript.TakeDamage(_attackDamage);
             }
         }
-
-
     }
 
     bool IsGrounded()
@@ -112,14 +124,16 @@ public class PlayerController : MonoBehaviour
         }
         return false; 
     }
+
     void OnDrawGizmos()
     {
+        //GroundSensor Gizmo
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(_groundSensor.position, _sensorSize);
 
+        //AttackHitbox Gizmo
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(_attackHitBox.position, _hitBoxRadius);
-        
     }
 
 
