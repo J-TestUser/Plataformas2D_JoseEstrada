@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
     private Vector2 _moveInput;
     private InputAction _pauseAction;
 
-//Ground Sensor
+//Colliders and Sensors
     [SerializeField] private Transform _groundSensor;
     [SerializeField] private Transform _attackHitBox;
     [SerializeField] private float _hitBoxRadius = 1f;

@@ -44,8 +44,9 @@ public class GameManager : MonoBehaviour
             _isPaused = true; 
             AudioManager.Instance.PauseSoundtrack();
             Time.timeScale = 0;
-           
         }
+        CanvasManager.Instance.ChangeCanvasStatus();
+
         
     }
 
