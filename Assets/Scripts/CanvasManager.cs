@@ -39,4 +39,9 @@ public class CanvasManager : MonoBehaviour
             selectedButton.Select();
         }
     }
+
+    public void ChangeScene(string sceneName)
+    {
+        SceneLoader.Instance.ChangeScene(sceneName);
+    }
 }
