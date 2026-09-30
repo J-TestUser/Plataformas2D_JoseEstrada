@@ -4,7 +4,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-    [SerializeField]private int coins;
+    [SerializeField] private int coins;
+    [SerializeField] private int stars;
 
     private bool _isPaused = false;
 
@@ -28,6 +29,11 @@ public class GameManager : MonoBehaviour
     public void AddCoin()
     {
         coins += 1;
+    }
+
+    public void AddStar()
+    {
+        stars += 1;
     }
 
     public void Pause()
