@@ -1,14 +1,22 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CanvasManager : MonoBehaviour
 {
-    [SerializeField] private GameObject _puaseCanvas;
+    public GameObject pauseCanvas;
+    public Button resumeButton;
+
+    public GameObject gameOverCanvas;
+    public Button retryButton;
+    
+    
 
     public static CanvasManager Instance;
+    
 
     void Awake()
     {
-        if (Instance != null && Instance != null)
+        if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
         }
@@ -19,16 +27,16 @@ public class CanvasManager : MonoBehaviour
 
     }
 
-    public void ChangeCanvasStatus()
+    public void ChangeCanvasStatus(GameObject canvas, Button selectedButton)
     {
-        if (_puaseCanvas.activeInHierarchy)
+        if (canvas.activeInHierarchy)
         {
-            _puaseCanvas.SetActive(false);
+            canvas.SetActive(false);
         }
         else
         {
-            _puaseCanvas.SetActive(true);
+            canvas.SetActive(true);
+            selectedButton.Select();
         }
-
     }
 }
