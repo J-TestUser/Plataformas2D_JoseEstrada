@@ -14,6 +14,8 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D _rigidBody2D;
     private Animator _animator;
     private AudioSource _playerAudioSource;
+    private Collider2D _collider2D;
+    private SpriteRenderer _spriteRenderer;
 
 //Inputs
     private InputAction _moveAction;
@@ -30,6 +32,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private LayerMask _groundLayer;
     [SerializeField] private AudioClip _jumpSound;
     [SerializeField] private AudioClip _attackSound; 
+    [SerializeField] private AudioClip _damageSound;
+    [SerializeField] private AudioClip _deathSound;
     
   
 
@@ -38,6 +42,8 @@ public class PlayerController : MonoBehaviour
         _rigidBody2D = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
         _playerAudioSource = GetComponent<AudioSource>();
+        _collider2D = GetComponent<Collider2D>();
+        _spriteRenderer = GetComponent<SpriteRenderer>();
 
 
         _moveAction = InputSystem.actions["Move"];
@@ -48,7 +54,8 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        //_actualHealth = _maxHealth;
+        _actualHealth = _maxHealth;
+        GameManager.Instance._playerHealth = _actualHealth;
     }
     // Update is called once per frame
     void Update()
@@ -154,6 +161,27 @@ public class PlayerController : MonoBehaviour
             _actualHealth = _maxHealth ;  
         }
         
+    }
+
+    public void TakeDamage(int damage)
+    {
+        _actualHealth -= damage;
+        PlaySFX(_damageSound);
+        GameManager.Instance._playerHealth = _actualHealth;
+
+        if(_actualHealth <= 0)
+        {
+            Death();
+        }
+    }
+
+    void Death ()
+    {
+        SceneLoader.Instance.GameOver("GameOver");
+        PlaySFX(_deathSound);
+        _collider2D.enabled = false;
+        _spriteRenderer.enabled = false;
+        Destroy(gameObject, 0.5f);
     }
 
     void OnDrawGizmos()

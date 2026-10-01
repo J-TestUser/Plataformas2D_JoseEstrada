@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -6,6 +7,9 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private int coins;
     [SerializeField] private int stars;
+    [SerializeField] private GameObject _gameplayCanvas;
+    [SerializeField] private Image _healtBar;
+    public int  _playerHealth;
 
     private bool _isPaused = false;
 
@@ -24,6 +28,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         AudioManager.Instance.StartSoundtrack();
+        
     }
     
     public void AddCoin()

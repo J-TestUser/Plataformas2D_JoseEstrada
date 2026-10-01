@@ -63,4 +63,9 @@ public class SceneLoader : MonoBehaviour
         _loadingCanvas.SetActive(false);
     }
 
+    public void GameOver(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
+    }
+
 }

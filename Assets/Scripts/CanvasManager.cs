@@ -6,8 +6,6 @@ public class CanvasManager : MonoBehaviour
     public GameObject pauseCanvas;
     public Button resumeButton;
 
-    public GameObject gameOverCanvas;
-    public Button retryButton;
     
     
 
