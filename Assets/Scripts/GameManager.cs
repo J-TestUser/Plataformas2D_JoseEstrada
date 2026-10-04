@@ -9,7 +9,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int stars;
     [SerializeField] private GameObject _gameplayCanvas;
     [SerializeField] private Image _healtBar;
+    [SerializeField] Text _coinText;
+    [SerializeField] Text _starText;
+    [SerializeField] private int _amountOfStars;
+    [SerializeField] private int _levelMaxStarsAmount;
     public int  _playerHealth;
+    
 
     private bool _isPaused = false;
 
@@ -34,11 +39,17 @@ public class GameManager : MonoBehaviour
     public void AddCoin()
     {
         coins += 1;
+        _coinText.text = "x" + coins.ToString();
     }
 
     public void AddStar()
     {
         stars += 1;
+        _starText.text = stars.ToString() + "/" + _amountOfStars.ToString();
+        if (stars == _levelMaxStarsAmount)
+        {
+            Win();
+        }
     }
 
     public void Pause()
@@ -59,6 +70,12 @@ public class GameManager : MonoBehaviour
         CanvasManager.Instance.ChangeCanvasStatus(CanvasManager.Instance.pauseCanvas, CanvasManager.Instance.resumeButton);
 
         
+    }
+
+    public void Win()
+    {
+        CanvasManager.Instance.ChangeCanvasStatus(CanvasManager.Instance.victoryCanvas, CanvasManager.Instance.retryButton);
+
     }
 
     public bool IsPaused()
