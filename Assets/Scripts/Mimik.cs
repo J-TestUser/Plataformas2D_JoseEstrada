@@ -23,7 +23,7 @@ public class Mimik : MonoBehaviour
         {
             PlayerController _playerDamage = collision.gameObject.GetComponent<PlayerController>();
             _animator.SetTrigger("IsAttacking");
-            _playerDamage.TakeDamage(20);
+            _playerDamage.TakeDamage(50);
         }       
     }
 

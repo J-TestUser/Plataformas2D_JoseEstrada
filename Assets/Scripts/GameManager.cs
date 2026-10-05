@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
@@ -69,9 +70,11 @@ public class GameManager : MonoBehaviour
         CanvasManager.Instance.ChangeCanvasStatus(CanvasManager.Instance.pauseCanvas, CanvasManager.Instance.resumeButton);   
     }
 
-    public void HealthBar(float actualHealth)
+    public IEnumerator ModifyHealthBar(float actualHealth)
     {
-        _healtBar.fillAmount = actualHealth;
+        float startHealth = _healtBar.fillAmount;
+        _healtBar.fillAmount = startHealth - actualHealth;
+        yield return new WaitForSecondsRealtime (1f);
     }
 
 
