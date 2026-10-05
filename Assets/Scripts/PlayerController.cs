@@ -168,7 +168,7 @@ public class PlayerController : MonoBehaviour
         _actualHealth -= damage;
         PlaySFX(_damageSound);
         GameManager.Instance._playerHealth = _actualHealth;
-        GameManager.Instance.HealthBar(0.1f);
+        GameManager.Instance.HealthBar(-0.1f);
 
         if(_actualHealth <= 0)
         {

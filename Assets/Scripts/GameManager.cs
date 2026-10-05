@@ -71,7 +71,7 @@ public class GameManager : MonoBehaviour
 
     public void HealthBar(float actualHealth)
     {
-        _healtBar.fillAmount = - actualHealth;
+        _healtBar.fillAmount = actualHealth;
     }
 
 

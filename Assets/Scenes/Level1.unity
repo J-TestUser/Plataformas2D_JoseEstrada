@@ -17234,10 +17234,9 @@ MonoBehaviour:
   coins: 0
   stars: 0
   _gameplayCanvas: {fileID: 1332336670}
-  _healtBar: {fileID: 0}
+  _healtBar: {fileID: 1129912036}
   _coinText: {fileID: 1377896441}
   _starText: {fileID: 1599929453}
-  _amountOfStars: 3
   _levelMaxStarsAmount: 3
   _playerHealth: 0
 --- !u!4 &1857133193
