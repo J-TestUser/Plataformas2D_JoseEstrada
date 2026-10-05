@@ -11,7 +11,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Image _healtBar;
     [SerializeField] Text _coinText;
     [SerializeField] Text _starText;
-    [SerializeField] private int _amountOfStars;
     [SerializeField] private int _levelMaxStarsAmount;
     public int  _playerHealth;
     
@@ -45,7 +44,7 @@ public class GameManager : MonoBehaviour
     public void AddStar()
     {
         stars += 1;
-        _starText.text = stars.ToString() + "/" + _amountOfStars.ToString();
+        _starText.text = stars.ToString() + "/" + _levelMaxStarsAmount.ToString();
         if (stars == _levelMaxStarsAmount)
         {
             Win();
@@ -67,10 +66,15 @@ public class GameManager : MonoBehaviour
             AudioManager.Instance.PauseSoundtrack();
             Time.timeScale = 0;
         }
-        CanvasManager.Instance.ChangeCanvasStatus(CanvasManager.Instance.pauseCanvas, CanvasManager.Instance.resumeButton);
-
-        
+        CanvasManager.Instance.ChangeCanvasStatus(CanvasManager.Instance.pauseCanvas, CanvasManager.Instance.resumeButton);   
     }
+
+    public void HealthBar(float actualHealth)
+    {
+        _healtBar.fillAmount = - actualHealth;
+    }
+
+
 
     public void Win()
     {
