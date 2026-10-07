@@ -1816,7 +1816,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f6fb4d8ae273694a8b41acd16f7a464, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Heart
-  _heal: 50
+  _heal: 5
   _healSound: {fileID: 8300000, guid: 758fb440966d4e24e85aa7ec4d033b25, type: 3}
 --- !u!212 &683341270
 SpriteRenderer:
@@ -17080,7 +17080,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f6fb4d8ae273694a8b41acd16f7a464, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Heart
-  _heal: 50
+  _heal: 5
   _healSound: {fileID: 8300000, guid: 758fb440966d4e24e85aa7ec4d033b25, type: 3}
 --- !u!212 &1701527702
 SpriteRenderer:
@@ -18596,6 +18596,10 @@ PrefabInstance:
     - target: {fileID: 1776192439405916707, guid: 565ca2c91a6601049be29f7536bc5062, type: 3}
       propertyPath: m_Resource
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6177880708110585604, guid: 565ca2c91a6601049be29f7536bc5062, type: 3}
+      propertyPath: _maxHealth
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6177880708110585604, guid: 565ca2c91a6601049be29f7536bc5062, type: 3}
       propertyPath: _damageSound

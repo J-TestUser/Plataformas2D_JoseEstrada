@@ -4,12 +4,11 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
 
-    [SerializeField] private int _maxHealth = 100;
-    [SerializeField] private int _actualHealth;
+    [SerializeField] private float _maxHealth = 1;
+    [SerializeField] private float _actualHealth;
     [SerializeField] private float movementSpeed = 4.5f;    
     [SerializeField] private float _jumpHeight = 10;  
     [SerializeField] private int _attackDamage = 10;
-    [SerializeField] private float _selfDamage = 0.5f;
 
 //Components
     private Rigidbody2D _rigidBody2D;
@@ -153,9 +152,10 @@ public class PlayerController : MonoBehaviour
         _playerAudioSource.PlayOneShot(clip, volume);
     }
 
-    public void GainHealth(int heal)
+    public void GainHealth(float heal)
     {
         _actualHealth += heal;
+        GameManager.Instance.StartCoroutine(GameManager.Instance.IncreaseHealthBar(heal));
 
         if(_actualHealth >= _maxHealth)
         {
@@ -164,12 +164,12 @@ public class PlayerController : MonoBehaviour
         
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         _actualHealth -= damage;
         PlaySFX(_damageSound);
         GameManager.Instance._playerHealth = _actualHealth;
-        GameManager.Instance.StartCoroutine(GameManager.Instance.ModifyHealthBar(_selfDamage));
+        GameManager.Instance.StartCoroutine(GameManager.Instance.ReduceHealthBar(damage));
 
         if(_actualHealth <= 0)
         {

@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] Text _coinText;
     [SerializeField] Text _starText;
     [SerializeField] private int _levelMaxStarsAmount;
-    public int  _playerHealth;
+    public float  _playerHealth;
     
 
     private bool _isPaused = false;
@@ -70,10 +70,17 @@ public class GameManager : MonoBehaviour
         CanvasManager.Instance.ChangeCanvasStatus(CanvasManager.Instance.pauseCanvas, CanvasManager.Instance.resumeButton);   
     }
 
-    public IEnumerator ModifyHealthBar(float actualHealth)
+    public IEnumerator ReduceHealthBar(float actualHealth)
     {
         float startHealth = _healtBar.fillAmount;
         _healtBar.fillAmount = startHealth - actualHealth;
+        yield return new WaitForSecondsRealtime (1f);
+    }
+
+    public IEnumerator IncreaseHealthBar(float actualHealth)
+    {
+        float startHealth = _healtBar.fillAmount;
+        _healtBar.fillAmount = startHealth + actualHealth;
         yield return new WaitForSecondsRealtime (1f);
     }
 

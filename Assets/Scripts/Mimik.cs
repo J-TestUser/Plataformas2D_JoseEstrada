@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class Mimik : MonoBehaviour
 {
-    [SerializeField] private int _mimikMaxHP = 20;
-    [SerializeField] private int _mimikActualHP;
+    [SerializeField] private float _mimikMaxHP = 20;
+    [SerializeField] private float _mimikActualHP;
 
     private Animator _animator;
 
@@ -17,17 +17,18 @@ public class Mimik : MonoBehaviour
     {
         _mimikActualHP = _mimikMaxHP;
     }
+
     void OnCollisionEnter2D (Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
             PlayerController _playerDamage = collision.gameObject.GetComponent<PlayerController>();
             _animator.SetTrigger("IsAttacking");
-            _playerDamage.TakeDamage(50);
-        }       
+            _playerDamage.TakeDamage(0.3f);
+        }     
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         _mimikActualHP -= damage;
 
@@ -37,8 +38,6 @@ public class Mimik : MonoBehaviour
         }
 
     }
-
-    
 
     void Die()
     {

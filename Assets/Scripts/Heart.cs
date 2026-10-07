@@ -8,7 +8,7 @@ public class Heart : MonoBehaviour
     private SpriteRenderer _spriteRenderer;
 
     //Variables values
-    [SerializeField] private int _heal;
+    [SerializeField] private float _heal;
     [SerializeField] private AudioClip _healSound;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
