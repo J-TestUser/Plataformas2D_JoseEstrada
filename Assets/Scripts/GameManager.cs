@@ -88,8 +88,8 @@ public class GameManager : MonoBehaviour
 
     public void Win()
     {
+        AudioManager.Instance.PauseSoundtrack();
         CanvasManager.Instance.ChangeCanvasStatus(CanvasManager.Instance.victoryCanvas, CanvasManager.Instance.retryButton);
-
     }
 
     public bool IsPaused()

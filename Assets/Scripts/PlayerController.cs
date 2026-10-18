@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections;
 
 public class PlayerController : MonoBehaviour
 {
@@ -173,18 +174,28 @@ public class PlayerController : MonoBehaviour
 
         if(_actualHealth <= 0)
         {
-            Death();
+            StartCoroutine(Death());
         }
     }
 
-    void Death ()
+    IEnumerator Death ()
     {
-        SceneLoader.Instance.GameOver("GameOver");
         PlaySFX(_deathSound);
+        _collider2D.enabled = false;
+        _spriteRenderer.enabled = false;
+        yield return new WaitForSecondsRealtime (0.5f);
+        SceneLoader.Instance.GameOver("GameOver");
+        Destroy(gameObject, 0.5f);
+        
+    }
+
+    public void Win()
+    {
         _collider2D.enabled = false;
         _spriteRenderer.enabled = false;
         Destroy(gameObject, 0.5f);
     }
+
 
     void OnDrawGizmos()
     {
