@@ -90,6 +90,12 @@ public class GameManager : MonoBehaviour
     {
         AudioManager.Instance.PauseSoundtrack();
         CanvasManager.Instance.ChangeCanvasStatus(CanvasManager.Instance.victoryCanvas, CanvasManager.Instance.retryButton);
+        Time.timeScale = 0;
+    }
+
+    public void WinChangeScene(string sceneName)
+    {
+        SceneLoader.Instance.ChangeScene(sceneName);
     }
 
     public bool IsPaused()

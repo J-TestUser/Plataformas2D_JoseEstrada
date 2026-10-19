@@ -1129,9 +1129,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1648213845}
-        m_TargetAssemblyTypeName: SceneLoader, Assembly-CSharp
-        m_MethodName: ChangeScene
+      - m_Target: {fileID: 1857133192}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: WinChangeScene
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -16941,22 +16941,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6758133967787993621, guid: 9bdd2617fce6cef42beff253333d4eb2, type: 3}
+      propertyPath: m_SortingOrder
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9bdd2617fce6cef42beff253333d4eb2, type: 3}
---- !u!114 &1648213845 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2943114587937580220, guid: 9bdd2617fce6cef42beff253333d4eb2, type: 3}
-  m_PrefabInstance: {fileID: 1648213844}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0503a75cb1d8413479217ff7519f8263, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SceneLoader
 --- !u!4 &1658146601 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 739687761912454338, guid: 565ca2c91a6601049be29f7536bc5062, type: 3}
@@ -17586,7 +17579,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 5
+  m_SortingOrder: 2
   m_TargetDisplay: 0
 --- !u!224 &1962631735
 RectTransform:
@@ -18668,6 +18661,10 @@ PrefabInstance:
       propertyPath: _damageSound
       value: 
       objectReference: {fileID: 8300000, guid: 6442877305ebd424dabb1dc56e16b93f, type: 3}
+    - target: {fileID: 6177880708110585604, guid: 565ca2c91a6601049be29f7536bc5062, type: 3}
+      propertyPath: _attackDamage
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 8465502164328547041, guid: 565ca2c91a6601049be29f7536bc5062, type: 3}
       propertyPath: m_Name
       value: Player
