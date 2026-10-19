@@ -90,6 +90,8 @@ public class GameManager : MonoBehaviour
     {
         AudioManager.Instance.PauseSoundtrack();
         CanvasManager.Instance.ChangeCanvasStatus(CanvasManager.Instance.victoryCanvas, CanvasManager.Instance.retryButton);
+        PlayerController _playerDestroyed = GameObject.Find("Player").GetComponent<PlayerController>();
+        _playerDestroyed.DestroyOnMenu();
         Time.timeScale = 0;
     }
 

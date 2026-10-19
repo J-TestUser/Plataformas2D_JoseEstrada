@@ -240,4 +240,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ca37d3f0bb16f24fb485dcbd933d03b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Stars
-  _starAudioClip: {fileID: 8300000, guid: c984e9c2429e5594e8696ab0407ad066, type: 3}
+  _starAudioClip: {fileID: 8300000, guid: 0b3b65cdb496dc04aaeece8a4545082d, type: 3}

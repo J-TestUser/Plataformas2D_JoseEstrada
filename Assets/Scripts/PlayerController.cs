@@ -189,13 +189,12 @@ public class PlayerController : MonoBehaviour
         
     }
 
-    public void Win()
+    public void DestroyOnMenu()
     {
         _collider2D.enabled = false;
         _spriteRenderer.enabled = false;
-        Destroy(gameObject, 0.5f);
+        Destroy(gameObject);
     }
-
 
     void OnDrawGizmos()
     {
@@ -207,5 +206,6 @@ public class PlayerController : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(_attackHitBox.position, _hitBoxRadius);
     }
+
 }
 
